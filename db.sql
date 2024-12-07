@@ -27,11 +27,12 @@ CREATE TABLE news(
 insert into users (username, password, role) values ('rsebert0', '123', 0);
 insert into users (username, password, role) values ('admin', 'admin', 1);
 
-insert into categories (name) values ('Thoi su');
-insert into categories (name) values ('The thao');
-insert into categories (name) values ('The gioi');
-insert into categories (name) values ('Giai tri');
-insert into categories (name) values ('Khoa hoc');
-insert into categories (name) values ('Kinh doanh');
-insert into categories (name) values ('Du lich');
-insert into categories (name) values ('Cong nghe');
+INSERT INTO categories (name) VALUES
+    (N'Thể thao'),
+    (N'Giáo dục'),
+    (N'Kinh tế');
+INSERT INTO news (title, content, image, created_at, category_id) VALUES
+    (N'Tin tức Thể thao 1', N'Nội dung chi tiết tin tức thể thao 1.', 'image1.jpg', NOW(), 1),
+    (N'Tin tức Giáo dục 1', N'Nội dung chi tiết tin tức giáo dục 1.', 'image2.jpg', NOW(), 2),
+    (N'Tin tức Kinh tế 1', N'Nội dung chi tiết tin tức kinh tế 1.', 'image3.jpg', NOW(), 3);
+
