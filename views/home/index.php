@@ -21,23 +21,18 @@
         </tr>
         </thead>
         <tbody>
+        <?php
+            foreach ($users as $user) {
+        ?>
         <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            <th scope="row"><?= $user->getId(); ?></th>
+            <td><?= $user->getUsername(); ?></td>
+            <td><?= $user->getPassword(); ?></td>
+            <td><?= $user->getRole(); ?></td>
         </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-        </tr>
+        <?php
+            }
+        ?>
         </tbody>
     </table>
 </div>

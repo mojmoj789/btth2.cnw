@@ -1,10 +1,9 @@
 <?php
 require_once('./config/config.php');
-echo APP_ROOT;
-require_once APP_ROOT.'/controllers/homecontrollers.php';
+require_once APP_ROOT . '/controllers/HomeController.php';
 
-$homecontroller = new homecontroller();
-$homecontroller->index();
+$homeController = new HomeController();
+$homeController->index();
 
 
 
