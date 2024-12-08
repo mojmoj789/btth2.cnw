@@ -92,6 +92,7 @@ insert into news (title, content, image, created_at, category_id) values ('I''ll
 
 Sed ante. Vivamus tortor. Duis mattis egestas metus.', 'http://dummyimage.com/116x100.png/ff4444/ffffff', '2024-04-25', 1);
 insert into news (title, content, image, created_at, category_id) values ('Madeline', 'Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.', 'http://dummyimage.com/160x100.png/dddddd/000000', '2024-09-03', 3);
+
 insert into news (title, content, image, created_at, category_id) values ('Boxing Gym', 'Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem.
 
 Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.

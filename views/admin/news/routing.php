@@ -4,7 +4,6 @@ session_start();
 $controller = isset($_GET['controller']) ? $_GET['controller'] : 'home';
 $action = isset($_GET['action']) ? $_GET['action'] : 'index';
 
-// Đường dẫn tới file controller
 $controllerFile = APP_ROOT . '/controllers/' . ucfirst($controller) . 'Controller.php';
 
 if (file_exists($controllerFile)) {
