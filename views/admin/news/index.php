@@ -51,6 +51,7 @@
         </tr>
         </thead>
         <tbody>
+        <!-- Dữ liệu bài viết sẽ được hiển thị ở đây -->
         <?php foreach ($data as $news): ?>
             <tr>
                 <th scope="row"><?= $news['id'] ?></th>

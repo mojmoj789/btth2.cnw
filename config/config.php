@@ -1,7 +1,7 @@
 <?php
 define('APP_ROOT', dirname(__FILE__, 2));
 
-define('DOMAIN', 'http://localhost/www/btth2.cnw');
+define('DOMAIN', 'http://localhost/www/');
 //define('DOMAIN', 'http://localhost:8000');
 
 define('DB_HOST', '127.0.0.1');
