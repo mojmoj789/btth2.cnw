@@ -20,8 +20,8 @@ class DBConnection {
     public function getConnection() {
         try {
             $this->conn = new PDO("mysql:host=$this->host;port=$this->port;dbname=$this->db", $this->user, $this->pass);
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); // Thiết lập chế độ lỗi
-            return $this->conn; // Trả về đối tượng PDO khi kết nối thành công
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            return $this->conn;
 
         } catch (PDOException $e) {
             throw new Exception("Connection failed: " . $e->getMessage());

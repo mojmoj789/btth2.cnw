@@ -1,8 +1,9 @@
 <?php
 define('APP_ROOT', dirname(__FILE__, 2));
 
-define('DOMAIN', 'http://localhost/www/');
-//define('DOMAIN', 'http://localhost:8000');
+//define('DOMAIN', 'http://localhost/btth2.cnw');
+//const DOMAIN = 'http://localhost/btth2.cnw/';
+define('DOMAIN', 'http://localhost:8000');
 
 define('DB_HOST', '127.0.0.1');
 define('DB_NAME', 'news');

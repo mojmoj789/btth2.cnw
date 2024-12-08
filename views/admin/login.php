@@ -26,7 +26,7 @@
             margin-bottom: 20px;
         }
         .login-container input {
-            width: -webkit-fill-available;
+            width: 100px;
             padding: 10px;
             margin: 10px 0;
             border: 1px solid #ddd;
