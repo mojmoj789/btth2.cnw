@@ -14,15 +14,15 @@
         <h1>Thêm Bài Viết</h1>
         <form action="<?php echo DOMAIN; ?>/index.php?controller=news&action=createNews" method="POST" enctype="multipart/form-data">
             <div class="form-group mb-2">
-                <label for="title">Tiêu đề:</label>
+                <label for="title">Tiêu đề</label>
                 <input type="text" name="title" id="title" required class="form-control">
             </div>
             <div class="form-group mb-2">
-                <label for="image">Hình ảnh:</label>
+                <label for="image">Hình ảnh</label>
                 <input type="file" name="image" id="image" required class="form-control">
             </div>
             <div class="form-group mb-2">
-                <label for="content">Nội dung:</label>
+                <label for="content">Nội dung</label>
                 <textarea name="content" id="content" rows="10" cols="30" required class="form-control"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Thêm Bài Viết</button>
