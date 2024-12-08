@@ -1,62 +1,41 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>News Management</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách bài viết</title>
 </head>
 <body>
-<div class="container mt-4">
-    <h1>Quản lý bài viết</h1>
-    <a href="add.php" class="btn btn-success mb-3">Thêm bài viết</a>
-    <table class="table table-bordered">
-        <thead>
+<h1>Danh sách bài viết</h1>
+<a href="add.php">Thêm bài viết mới</a>
+<table border="1">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Tiêu đề</th>
+        <th>Nội dung</th>
+        <th>Hình ảnh</th>
+        <th>Ngày tạo</th>
+        <th>Danh mục</th>
+        <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <?php while ($row = $news->fetch_assoc()): ?>
         <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Tiêu đề</th>
-            <th scope="col">Nội dung</th>
-            <th scope="col">Ngày đăng</th>
-            <th scope="col">Hành động</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Tiêu đề bài viết 1</td>
-            <td>Nội dung bài viết 1</td>
-            <td>2024-12-08</td>
+            <td><?php echo $row['id']; ?></td>
+            <td><?php echo $row['title']; ?></td>
+            <td><?php echo $row['content']; ?></td>
+            <td><img src="<?php echo $row['image']; ?>" alt="Image" width="100"></td>
+            <td><?php echo $row['created_at']; ?></td>
+            <td><?php echo $row['category_name']; ?></td>
             <td>
-                <a href="edit.php?id=1" class="btn btn-warning btn-sm">Sửa</a>
-                <a href="" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa bài viết này?')">Xóa</a>
+                <a href="edit.php?id=<?php echo $row['id']; ?>">Sửa</a>
+                <a href="delete.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Bạn có chắc chắn muốn xóa bài viết này?')">Xóa</a>
             </td>
         </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Tiêu đề bài viết 2</td>
-            <td>Nội dung bài viết 2</td>
-            <td>2024-12-07</td>
-            <td>
-                <a href="edit.php?id=2" class="btn btn-warning btn-sm">Sửa</a>
-                <a href="" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa bài viết này?')">Xóa</a>
-            </td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Tiêu đề bài viết 3</td>
-            <td>Nội dung bài viết 3</td>
-            <td>2024-12-06</td>
-            <td>
-                <a href="edit_post.php?id=3" class="btn btn-warning btn-sm">Sửa</a>
-                <a href="" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc chắn muốn xóa bài viết này?')">Xóa</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <?php endwhile; ?>
+    </tbody>
+</table>
 </body>
 </html>
