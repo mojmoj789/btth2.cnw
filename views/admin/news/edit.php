@@ -1,43 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sửa bài viết</title>
+    <title>Thêm Bài Viết</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
+
 <body>
-<h1>Sửa bài viết</h1>
-<form action="edit.php?id=<?php echo $news['id']; ?>" method="POST" enctype="multipart/form-data">
-    <!-- Tiêu đề bài viết -->
-    <label for="title">Tiêu đề:</label><br>
-    <input type="text" name="title" value="<?php echo $news['title']; ?>" required><br><br>
+<div class="container">
+    <div class="row">
+        <h1>Sửa Bài Viết</h1>
+        <form action="<?php echo DOMAIN; ?>/index.php?controller=news&action=editNews" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="id" value="<?= $data['id'] ?>">
+            <div class="form-group mb-2">
+                <label for="title">Tiêu đề:</label>
+                <input type="text" name="title" id="title" value="<?= $data['title'] ?>" required class="form-control">
+            </div>
+            <div class="form-group mb-2">
+                <label for="image">Hình ảnh:</label>
+                <input type="file" name="image" id="image" class="form-control">
+            </div>
+            <div class="form-group mb-2">
+                <label for="content">Nội dung:</label>
+                <textarea name="content" id="content" rows="10" cols="30" required class="form-control"><?= $data['content'] ?></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Sửa Bài Viết</button>
+            <a href="/index.php?controller=news&action=index" class="btn btn-secondary">Trở về</a>
+        </form>
+    </div>
+</div>
 
-    <!-- Nội dung bài viết -->
-    <label for="content">Nội dung:</label><br>
-    <textarea name="content" required><?php echo $news['content']; ?></textarea><br><br>
-
-    <!-- Hình ảnh bài viết -->
-    <label for="image">Hình ảnh:</label><br>
-    <input type="file" name="image"><br>
-    <?php if ($news['image']): ?>
-        <p><strong>Hình ảnh hiện tại:</strong> <img src="<?php echo $news['image']; ?>" alt="Hình ảnh bài viết" width="100"></p>
-    <?php endif; ?><br><br>
-
-    <!-- Danh mục -->
-    <label for="category_id">Danh mục:</label><br>
-    <select name="category_id" required>
-        <?php while ($row = $categories->fetch_assoc()): ?>
-            <option value="<?php echo $row['id']; ?>" <?php if ($row['id'] == $news['category_id']) echo 'selected'; ?>>
-                <?php echo $row['name']; ?>
-            </option>
-        <?php endwhile; ?>
-    </select><br><br>
-
-    <button type="submit">Lưu thay đổi</button>
-</form>
-
-
-<br>
-<a href="index.php">Quay lại</a>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
+
 </html>

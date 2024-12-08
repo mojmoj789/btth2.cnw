@@ -1,90 +1,37 @@
-<?php
-require_once '../config/config.php';
+<!DOCTYPE html>
+<html lang="vi">
 
-class User {
-    private $host;
-    private $dbname;
-    private $user;
-    private $pass;
-    private $conn;
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm Bài Viết</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
 
-    public function __construct($host, $dbname, $user, $pass) {
-        $this->host = $host;
-        $this->dbname = $dbname;
-        $this->user = $user;
-        $this->pass = $pass;
-    }
+<body>
+<div class="container">
+    <div class="row">
+        <h1>Thêm Bài Viết</h1>
+        <form action="<?php echo DOMAIN; ?>/index.php?controller=news&action=createNews" method="POST" enctype="multipart/form-data">
+            <div class="form-group mb-2">
+                <label for="title">Tiêu đề:</label>
+                <input type="text" name="title" id="title" required class="form-control">
+            </div>
+            <div class="form-group mb-2">
+                <label for="image">Hình ảnh:</label>
+                <input type="file" name="image" id="image" required class="form-control">
+            </div>
+            <div class="form-group mb-2">
+                <label for="content">Nội dung:</label>
+                <textarea name="content" id="content" rows="10" cols="30" required class="form-control"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Thêm Bài Viết</button>
+            <a href="/index.php?controller=news&action=index" class="btn btn-secondary">Trở về</a>
+        </form>
+    </div>
+</div>
 
-    public function getConnection() {
-        try {
-            $this->conn = new PDO("mysql:host={$this->host};dbname={$this->dbname}", $this->user, $this->pass);
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            return $this->conn;
-        } catch (PDOException $e) {
-            return null;
-        }
-    }
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
 
-    public function close() {
-        $this->conn = null;
-    }
-}
-
-class userService {
-    private $db;
-
-    public function __construct() {
-        $this->db = new DBConnection(DB_HOST, DB_NAME, DB_USER, DB_PASS);
-    }
-
-    public function getAllUsers() {
-        $conn = $this->db->getConnection();
-        if($conn) {
-            $stmt = $conn->prepare("SELECT * FROM users");
-            $stmt->execute();
-
-            $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            $this->db->close();
-            return $users;
-        } else {
-            return [];
-        }
-    }
-
-    public function getUserById($id) {
-        $conn = $this->db->getConnection();
-        if($conn) {
-            $stmt = $conn->prepare("SELECT * FROM users WHERE id = :id");
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-            $stmt->execute();
-
-            $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-            $this->db->close();
-
-            return $user ? $user : null;
-        } else {
-            return null;
-        }
-    }
-
-    public function getUsersByRole($role) {
-        $conn = $this->db->getConnection();
-        if($conn) {
-            $stmt = $conn->prepare("SELECT * FROM users WHERE role = :role");
-            $stmt->bindParam(':role', $role, PDO::PARAM_INT);
-            $stmt->execute();
-
-            $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            $this->db->close();
-
-            return $users;
-        } else {
-            return [];
-        }
-    }
-}
-
-?>
+</html>

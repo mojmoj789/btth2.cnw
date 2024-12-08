@@ -74,7 +74,7 @@
 
 <div class="container">
     <h1>Thêm bài viết mới</h1>
-    <form action="add.php" method="POST" enctype="multipart/form-data">
+    <form action="create.php" method="POST" enctype="multipart/form-data">
         <label for="title">Tiêu đề:</label>
         <input type="text" name="title" required><br>
 

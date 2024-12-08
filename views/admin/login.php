@@ -26,7 +26,7 @@
             margin-bottom: 20px;
         }
         .login-container input {
-            width: 100%;
+            width: -webkit-fill-available;
             padding: 10px;
             margin: 10px 0;
             border: 1px solid #ddd;
@@ -61,8 +61,8 @@
         </div>
     <?php } ?>
 
-    <form action="../../controllers/AdminController.php?controller=admin&action=login" method="POST">
-        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
+    <form action="<?php echo DOMAIN; ?>/index.php?controller=admin&action=login" method="POST">
+        <!-- <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>"> -->
 
         <input type="text" name="username" placeholder="Tên đăng nhập" required aria-label="Tên đăng nhập">
         <input type="password" name="password" placeholder="Mật khẩu" required aria-label="Mật khẩu">
