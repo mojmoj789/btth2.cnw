@@ -5,7 +5,7 @@ if(!defined('APP_ROOT')) {
     die('APP_ROOT is not defined');
 }
 class HomeController{
-    public function indexAction(){
+    public function index(){
         $userService = new UserService();
         $users = $userService->getAllUsers();
 
@@ -13,10 +13,6 @@ class HomeController{
             $users = [];
         }
 
-        include APP_ROOT . '/views/home/index.php';
-
-        echo '<pre>';
-        print_r($users);
-        echo '</pre>';
+        require_once APP_ROOT . '/views/home/index.php';
     }
 }

@@ -1,86 +1,51 @@
 <?php
-require_once APP_ROOT . '/libs/DBConnection.php';
-require_once APP_ROOT . '/models/users.php';
 
-    class userService{
-        private $db;
+    // Hàm để kết nối với CSDL (sử dụng PDO hoặc MySQLi)
 
-        public function __construct(){
-            $this->db = new DBConnection(DB_HOST, DB_USER, DB_PASS, DB_NAME);
-        }
+class Users {
+    private $pdo;
+    private $id;
+    private $username;
+    private $password;
+    private $role;
 
-        public function getAllUsers(){
-            $conn = $this->db->connect();
-            if(!$conn){
-                return [];
-            }
-            $stmt = $conn->prepare("SELECT * FROM users");
-            $stmt->execute();
-
-            $users = [];
-
-            while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-                $user = new users($row['id'], $row['username'], $row['password'], $row['role']);
-                $users[] = $user;
-            }
-            return $users;
-
-        }
+    public function __construct($id, $username, $password, $role) {
+        $this->id = $id;
+        $this->username = $username;
+        $this->password = $password;
+        $this->role = $role;
     }
-    class user {
-        private $id;
-        private $username;
-        private $password;
-        private $role;
 
-        public function __construct($id, $username, $password, $role)
-        {
-            $this->id = $id;
-            $this->username = $username;
-            $this->password = $password;
-            $this->role = $role;
-        }
-
-        public function getId()
-        {
-            return $this->id;
-        }
-
-        public function setId($id): void
-        {
-            $this->id = $id;
-        }
-
-        public function getUsername()
-        {
-            return $this->username;
-        }
-
-        public function setUsername($username): void
-        {
-            $this->username = $username;
-        }
-
-        public function getPassword()
-        {
-            return $this->password;
-        }
-
-        public function setPassword($password): void
-        {
-            $this->password = $password;
-        }
-
-        public function getRole()
-        {
-            return $this->role;
-        }
-
-        public function setRole($role): void
-        {
-            $this->role = $role;
-        }
-
-
-
+    public function getId() {
+        return $this->id;
     }
+
+    public function getUsername() {
+        return $this->username;
+    }
+
+    public function getPassword() {
+        return $this->password;
+    }
+
+    public function getRole() {
+        return $this->role;
+    }
+
+
+//    public function login($username, $password) {
+//            // Truy vấn để kiểm tra người dùng với tên đăng nhập
+//            $stmt = $this->pdo->prepare("SELECT * FROM users WHERE username = :username LIMIT 1");
+//            $stmt->bindParam(':username', $username);
+//            $stmt->execute();
+//
+//            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+//
+//            if ($user && password_verify($password, $user['password'])) {
+//                return $user;
+//            } else {
+//                return null; // Nếu không tìm thấy hoặc mật khẩu sai, trả về null
+//            }
+//        }
+}
+

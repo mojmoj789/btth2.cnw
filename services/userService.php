@@ -1,19 +1,23 @@
 <?php
 require_once APP_ROOT . '/models/users.php';
 class userService{
-    public function __construct(){
-        $this->db = new DBConnection(DB_HOST, DB_NAME, DB_USER, DB_PASS);
-    }
-    public function getAllUsers() {
-        $conn = $this->db->connect();
-        if($conn){
-            $stmt = $conn->prepare("SELECT * FROM users");
-            $stmt->execute();
+    public function getAllUsers()
+    {
+        try {
+            $conn = new PDO('mysql:host=localhost;dbname=news', 'root', '');
 
-            $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $sql = "SELECT * FROM users";
+            $stmt = $conn->query($sql);
+
+            $users = [];
+            while ($row = $stmt->fetch()) {
+                $user = new users($row['id'], $row['username'], $row['password'], $row['role']);
+                $users[] = $user;
+            }
             return $users;
-        } else {
-            return [];
+        } catch (PDOException $e) {
+            return $users = [];
+            //  echo $e->getMessage();
         }
     }
 
