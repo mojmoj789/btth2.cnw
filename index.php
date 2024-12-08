@@ -1,11 +1,7 @@
 <?php
-require_once('./config/config.php');
-require_once APP_ROOT . '/controllers/HomeController.php';
+require_once './config/config.php';
+require_once APP_ROOT.'/libs/DBConnection.php';
 
-$homeController = new HomeController();
-$homeController->index();
-
-
-
-
+$controller = $_GET['controller'] ?? 'home';
+$action = $_GET['action'] ?? 'index';
 
