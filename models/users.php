@@ -1,88 +1,66 @@
 <?php
-    class users {
-        private $id;
-        private $username;
-        private $password;
-        private $role;
+class User {
+    private $id;
+    private $username;
+    private $password;
+    private $role;
 
-        /**
-         * @param $id
-         * @param $username
-         * @param $password
-         * @param $role
-         */
-        public function __construct($id, $username, $password, $role)
-        {
-            $this->id = $id;
-            $this->username = $username;
-            $this->password = $password;
-            $this->role = $role;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getId()
-        {
-            return $this->id;
-        }
-
-        /**
-         * @param mixed $id
-         */
-        public function setId($id): void
-        {
-            $this->id = $id;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getUsername()
-        {
-            return $this->username;
-        }
-
-        /**
-         * @param mixed $username
-         */
-        public function setUsername($username): void
-        {
-            $this->username = $username;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getPassword()
-        {
-            return $this->password;
-        }
-
-        /**
-         * @param mixed $password
-         */
-        public function setPassword($password): void
-        {
-            $this->password = $password;
-        }
-
-        /**
-         * @return mixed
-         */
-        public function getRole()
-        {
-            return $this->role;
-        }
-
-        /**
-         * @param mixed $role
-         */
-        public function setRole($role): void
-        {
-            $this->role = $role;
-        }
-
-
-
+    public function __construct($id, $username, $password, $role)
+    {
+        $this->id = $id;
+        $this->username = $username;
+        $this->setPassword($password);
+        $this->role = $role;
     }
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    public function setUsername($username): void
+    {
+        $this->username = $username;
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    public function setPassword($password): void
+    {
+        $this->password = password_hash($password, PASSWORD_DEFAULT);
+    }
+
+    public function verifyPassword($password)
+    {
+        return password_verify($password, $this->password);
+    }
+
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    public function setRole($role): void
+    {
+        $this->role = $role;
+    }
+
+    public function __toString()
+    {
+        return "User ID: {$this->id}, Username: {$this->username}, Role: {$this->role}";
+    }
+}
+?>
